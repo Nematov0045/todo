@@ -25,33 +25,22 @@
         <br>
         
         
-        <form action="create/" method="POST">
+        <form method="POST">
             {% csrf_token %}
         <label>Название задачи:</label>
-        <input type="text" name="title">
+        <input type="text" name="title" value="{{todo.text}}" />
         <br>
         <br>
         <br>
         <label>Описание задача:</label>
-        <input type="text" name="description">
+        <input type="text" name="description" value="{{todo.description}}">
         <br>
         <br>
         <br>
         <input class="btn btn-warning" type="submit" value="сохранить" >
+        <input class="btn btn-dark" type="submit" value="назад" >
     </form>
-    <br>
-    <br>
-    <hr>
-    {% if todos.count > 0 %}
-        <span class="fs-4">Cписок всех дел:</span>
-      
-        <table class="table">
-            <tr><th>id</th><th> название</th> <th>описание</th><th>дата</th><th>изменить</th></tr>
-            {% for todo in todos %}
-            <tr><td>{{todo.id}}</td><td>{{todo.title}}</td><td>{{todo.description}}</td><td>{{todo.created_at}}</td><td><a href="edit/{{todo.id}}">изменить</a></td></tr>
-            {% endfor %}
-        </table>
-    {% endif %}
+    
         
        </div>
       </header>
