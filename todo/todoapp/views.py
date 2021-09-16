@@ -27,5 +27,12 @@ def edit(request,id):
         else:
             return render(request,'edit.html',{'todo':todo})
     except Todo.DoesNotExist:
-        return HttpResponseNotFound
-        ("<h2>задача не найдена</h2>")
+        return HttpResponseNotFound("<h2>задача не найдена</h2>")
+#удаление баз данных
+def delete(request,id):
+    try:
+        todo = Todo.objects.get(id=id)
+        todo.delete()
+        return HttpResponseRedirect('/')
+    except Todo.DoesNotExist:
+        return HttpResponseNotFound("<h2>задача не найдена</h2>")
